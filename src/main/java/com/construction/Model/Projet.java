@@ -45,16 +45,16 @@ public class Projet {
         this.description = description;
     }
 
-    public Date getDate_debut() {
-        return date_debut;
+    public java.sql.Date getDate_debut() {
+        return null;
     }
 
     public void setDate_debut(Date date_debut) {
         this.date_debut = date_debut;
     }
 
-    public Date getDate_fin() {
-        return date_fin;
+    public java.sql.Date getDate_fin() {
+        return null;
     }
 
     public void setDate_fin(Date date_fin) {
@@ -69,5 +69,3 @@ public class Projet {
         this.budget = budget;
     }
 }
-
-
