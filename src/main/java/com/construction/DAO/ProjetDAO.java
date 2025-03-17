@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class projet {
+public class ProjetDAO {
+
+    Projet projet = new Projet();
 
     public void AjouterProjet(Projet projet) throws SQLException {
 
@@ -22,11 +24,12 @@ public class projet {
            stmt.executeQuery();
        } catch ( SQLException e)
        {
-           throw new RuntimeException(e);
+          e.printStackTrace();
        }
 
-
     }
+
+
 
 
 
