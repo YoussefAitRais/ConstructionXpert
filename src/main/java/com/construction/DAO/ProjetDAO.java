@@ -56,21 +56,22 @@ public class ProjetDAO {
 
     public List<Projet> GetAllProjet() throws SQLException{
         List<Projet> projetList = new ArrayList<>();
-
         String query = "SELECT * FROM projet";
-        Connection connection = DBConnection.getConnection();
-        PreparedStatement stmt = connection.prepareStatement(query);
-        ResultSet rs = stmt.executeQuery();
+        try (Connection connection = DBConnection.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery()) {
 
-        while (rs.next()) {
-            Projet projet = new Projet();
-            projet.setId_projet(rs.getInt("id_projet"));
-            projet.setNom(rs.getString("nom"));
-            projet.setDescription(rs.getString("description"));
-            projet.setDate_debut(rs.getDate("date_debut"));
-            projet.setDate_fin(rs.getDate("date_fin"));
-            projet.setBudget(rs.getDouble("budget"));
-            projet.add(projet);
+            while (rs.next()) {
+                Projet projet = new Projet();
+                projet.setId_projet(rs.getInt("id_projet"));
+                projet.setNom(rs.getString("nom"));
+                projet.setDescription(rs.getString("description"));
+                projet.setDate_debut(rs.getDate("date_debut"));
+                projet.setDate_fin(rs.getDate("date_fin"));
+                projet.setBudget(rs.getDouble("budget"));
+                projetList.add(projet);
+            }
+            return projetList;
         }
 
     }
