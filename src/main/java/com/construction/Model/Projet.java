@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Projet {
 
-    private int id ;
+    private int id_projet ;
     private String nom;
     private String description;
     private Date date_debut;
@@ -13,7 +13,7 @@ public class Projet {
 
 
     public Projet(int id, String nom, String description, Date date_debut, Date date_fin, double budget) {
-        this.id = id;
+        this.id_projet = id_projet;
         this.nom = nom;
         this.description = description;
         this.date_debut = date_debut;
@@ -25,12 +25,12 @@ public class Projet {
 
     }
 
-    public int getId() {
-        return id;
+    public int getId_projet() {
+        return id_projet;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_projet(int idProjet) {
+        this.id_projet=idProjet;
     }
 
     public String getNom() {
@@ -50,7 +50,7 @@ public class Projet {
     }
 
     public java.sql.Date getDate_debut() {
-        return null;
+        return (java.sql.Date) date_debut;
     }
 
     public void setDate_debut(Date date_debut) {
@@ -58,7 +58,7 @@ public class Projet {
     }
 
     public java.sql.Date getDate_fin() {
-        return null;
+        return (java.sql.Date) date_fin;
     }
 
     public void setDate_fin(Date date_fin) {
@@ -72,4 +72,7 @@ public class Projet {
     public void setBudget(double budget) {
         this.budget = budget;
     }
+
+
+
 }
