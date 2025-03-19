@@ -56,9 +56,7 @@ public class ProjetServlet extends HttpServlet {
             response.getWriter().write("Saving success !");
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendError(500, "Error saving project.");
+            response.sendError(500, "Error saving  project.");
         }
     }
-
-
 }
