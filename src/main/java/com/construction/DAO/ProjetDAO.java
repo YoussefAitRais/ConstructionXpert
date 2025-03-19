@@ -36,7 +36,7 @@ public class ProjetDAO {
          try (Connection connection = DBConnection.getConnection()) {
 
                  PreparedStatement stmt = connection.prepareStatement(query);
-                 stmt.setInt(1, projet.getId_projet());
+                 stmt.setInt(1, id_projet);
                  ResultSet rs = stmt.executeQuery();
 
                  if (rs.next()) {
@@ -75,7 +75,7 @@ public class ProjetDAO {
         }
     }
 
-    public void ModifierProjet(Projet projet) throws SQLException {
+    public Projet ModifierProjet(Projet projet) throws SQLException {
         String query = " update projet set nom = ?; description = ?, date_debut = ?, date_fin = ?, budget = ?, where id_projet = ?";
 
         try(Connection connection = DBConnection.getConnection();
@@ -90,6 +90,7 @@ public class ProjetDAO {
             stmt.executeUpdate();
         }
 
+        return projet;
     }
 
     public void DeleteProjet(int id_projet) throws SQLException{
