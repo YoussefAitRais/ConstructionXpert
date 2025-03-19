@@ -6,7 +6,7 @@
     <title>Liste des Projets</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="w-full min-h-screen flex flex-col bg-no-repeat bg-cover" style="background-image: url('./image/salle de sport.jpg');"><div class="container mx-auto bg-white p-6 shadow-lg rounded-lg">
+<body class="w-full min-h-screen flex flex-col bg-no-repeat bg-cover" style="background-image: url('./image/pexels.jpg');"><div class="container mx-auto bg-white p-6 shadow-lg rounded-lg">
     <h2 class="text-2xl font-bold text-gray-800 text-center mb-10">Liste des Projets</h2>
     <a href="ajouterProjet.jsp" class="bg-blue-500 text-white px-4 py-2 rounded block w-max mx-auto">Ajouter un Projet</a>
     <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-10">
