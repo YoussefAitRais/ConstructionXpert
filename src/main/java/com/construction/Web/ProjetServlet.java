@@ -26,7 +26,9 @@ public class ProjetServlet extends HttpServlet {
         try {
             switch (action != null ? action : "") {
                 case "edit":
+
                     request.setAttribute("projet", projetDAO.GetProjetById(id_projet));
+
                     request.getRequestDispatcher("/modifierProjet.jsp").forward(request, response);
                     break;
                 case "delete":
@@ -57,11 +59,9 @@ public class ProjetServlet extends HttpServlet {
             projet.setBudget(Double.parseDouble(request.getParameter("budget")));
 
             if (request.getParameter("id_projet") != null && !request.getParameter("id_projet").isEmpty()) {
-                // Update project
                 projet.setId_projet(Integer.parseInt(request.getParameter("id_projet")));
                 projetDAO.ModifierProjet(projet);
             } else {
-                // Create new project
                 projetDAO.AjouterProjet(projet);
             }
 

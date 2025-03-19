@@ -76,19 +76,21 @@ public class ProjetDAO {
     }
 
     public Projet ModifierProjet(Projet projet) throws SQLException {
-        String query = " update projet set nom = ?; description = ?, date_debut = ?, date_fin = ?, budget = ?, where id_projet = ?";
+        String sql = "UPDATE projet SET nom = ?, description = ?, date_debut = ?, date_fin = ?, budget = ? WHERE id_projet = ?";
+        PreparedStatement stmt = DBConnection.getConnection().prepareStatement(sql);
 
-        try(Connection connection = DBConnection.getConnection();
-        PreparedStatement stmt = connection.prepareStatement(query))
-        {
-            stmt.setString(1, projet.getNom());
-            stmt.setString(2, projet.getDescription());
-            stmt.setDate(3, projet.getDate_debut());
-            stmt.setDate(4, projet.getDate_fin());
-            stmt.setDouble(5, projet.getBudget());
-            stmt.setInt(6, projet.getId_projet());
-            stmt.executeUpdate();
+        stmt.setString(1, projet.getNom());
+        stmt.setString(2, projet.getDescription() != null ? projet.getDescription() : "");
+        stmt.setDate(3, projet.getDate_debut() != null ? projet.getDate_debut() : new java.sql.Date(System.currentTimeMillis())); // Remplacer null par la date actuelle
+        stmt.setDate(4, projet.getDate_fin() != null ? projet.getDate_fin() : new java.sql.Date(System.currentTimeMillis())); // Remplacer null par la date actuelle
+        stmt.setDouble(5, projet.getBudget());
+        stmt.setInt(6, projet.getId_projet());
+
+        int rowsUpdated = stmt.executeUpdate();
+        if (rowsUpdated == 0) {
+            throw new SQLException("No project found with ID " + projet.getId_projet());
         }
+
 
         return projet;
     }
