@@ -51,7 +51,7 @@ public class ProjetDAO {
          } catch (SQLException e) {
                  e.printStackTrace();
              }
-        return null;
+            return projet;
     }
 
     public List<Projet> GetAllProjet() throws SQLException{
@@ -72,6 +72,33 @@ public class ProjetDAO {
                 projetList.add(projet);
             }
             return projetList;
+        }
+    }
+
+    public void ModifierProjet(Projet projet) throws SQLException {
+        String query = " update projet set nom = ?; description = ?, date_debut = ?, date_fin = ?, budget = ?, where id_projet = ?";
+
+        try(Connection connection = DBConnection.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(query))
+        {
+            stmt.setString(1, projet.getNom());
+            stmt.setString(2, projet.getDescription());
+            stmt.setDate(3, projet.getDate_debut());
+            stmt.setDate(4, projet.getDate_fin());
+            stmt.setDouble(5, projet.getBudget());
+            stmt.setInt(6, projet.getId_projet());
+            stmt.executeUpdate();
+        }
+
+    }
+
+    public void DeletProjet(int id_projet) throws SQLException{
+        String query = "delete from projet where id_projet = ?;";
+        try(Connection connection = DBConnection.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(query)){
+
+            stmt.setInt(1, id_projet);
+            stmt.executeUpdate();
         }
 
     }
