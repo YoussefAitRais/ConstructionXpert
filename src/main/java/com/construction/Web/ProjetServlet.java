@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet ("/Projet")
 public class ProjetServlet extends HttpServlet {
@@ -25,19 +26,29 @@ public class ProjetServlet extends HttpServlet {
 
     protected void doGet (HttpServletRequest request , HttpServletResponse response)
         throws  ServletException, IOException {
-        int id_projet = Integer.parseInt(request.getParameter("id_projet"));
+        String action = request.getParameter("action")
 
 
         Projet projet = null;
         try {
+            if ("edit" equals(action)){
+            int id_projet = Integer.parseInt(request.getParameter("id_projet"));
             projet = projetDAO.GetProjetById(id_projet);
             request.setAttribute("projet", projet);
-            request.getRequestDispatcher("project-details.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
+            request.getRequestDispatcher("modifier.jsp").forward(request, response);
+            }else if ("delete" equals(action)){
+                int id_projet = Integer.parseInt(request.getParameter("id_projet"));
+                projetDAO.DeleteProjet(id_projet);
+                response.sendRedirect("Projet");
+            }else {
+                List<Projet> projetList = projetDAO.GetAllProjet();
+                request.setAttribute("projet", projet);
+                request.getRequestDispatcher("listeProjets.jsp").forward(request, response);
+            }
 
-
-
+        } catch (SQLException e){
+                e.printStackTrace();
+            response.sendError(500, "Database error");
     }
 
 }

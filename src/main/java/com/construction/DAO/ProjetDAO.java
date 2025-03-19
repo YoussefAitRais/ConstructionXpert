@@ -92,7 +92,7 @@ public class ProjetDAO {
 
     }
 
-    public void DeletProjet(int id_projet) throws SQLException{
+    public void DeleteProjet(int id_projet) throws SQLException{
         String query = "delete from projet where id_projet = ?;";
         try(Connection connection = DBConnection.getConnection();
             PreparedStatement stmt = connection.prepareStatement(query)){
