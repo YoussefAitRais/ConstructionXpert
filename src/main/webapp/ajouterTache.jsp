@@ -5,7 +5,7 @@
     <title>Ajouter une Tâche</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="w-full min-h-screen flex flex-col bg-no-repeat bg-cover items-center justify-center" style="background-image: url('./image/pexels.jpg');">
+<body class="w-full min-h-screen flex flex-col bg-no-repeat bg-cover items-center justify-center" style="background-image: url('./image/tracteur.jpg');">
 
 <div class="bg-white/90 p-6 shadow-lg rounded-lg w-full max-w-lg">
     <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Ajouter une Tâche</h2>
