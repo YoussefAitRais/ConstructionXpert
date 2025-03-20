@@ -1,6 +1,5 @@
 package com.construction.DAO;
 
-import com.construction.Model.Projet;
 import com.construction.Model.Tache;
 
 import java.sql.Connection;
@@ -15,18 +14,18 @@ public class TacheDAO {
 
     Tache tache = new Tache();
 
-    public void AjouterTache() throws SQLException {
+    public void AjouterTache(Tache tache) throws SQLException {
 
         String query  = "insert into tache ( id_projet , id_tache , description , date_debut , date_fin) values (?,?,?,?,?)";
 
         try (Connection connection = DBConnection.getConnection()) {
             PreparedStatement stmt = connection.prepareStatement((query));
 
-            stmt.setInt(1, tache.getId_projet());
-            stmt.setInt(2, tache.getId_tache());
-            stmt.setString(3, tache.getDescription());
-            stmt.setDate(4, tache.getDate_debut());
-            stmt.setDate(5, tache.getDate_fin());
+            stmt.setInt(1, this.tache.getId_projet());
+            stmt.setInt(2, this.tache.getId_tache());
+            stmt.setString(3, this.tache.getDescription());
+            stmt.setDate(4, this.tache.getDate_debut());
+            stmt.setDate(5, this.tache.getDate_fin());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
