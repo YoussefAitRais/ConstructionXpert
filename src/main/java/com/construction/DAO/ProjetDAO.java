@@ -81,8 +81,8 @@ public class ProjetDAO {
 
         stmt.setString(1, projet.getNom());
         stmt.setString(2, projet.getDescription() != null ? projet.getDescription() : "");
-        stmt.setDate(3, projet.getDate_debut() != null ? projet.getDate_debut() : new java.sql.Date(System.currentTimeMillis())); // Remplacer null par la date actuelle
-        stmt.setDate(4, projet.getDate_fin() != null ? projet.getDate_fin() : new java.sql.Date(System.currentTimeMillis())); // Remplacer null par la date actuelle
+        stmt.setDate(3, projet.getDate_debut() != null ? projet.getDate_debut() : new java.sql.Date(System.currentTimeMillis()));
+        stmt.setDate(4, projet.getDate_fin() != null ? projet.getDate_fin() : new java.sql.Date(System.currentTimeMillis()));
         stmt.setDouble(5, projet.getBudget());
         stmt.setInt(6, projet.getId_projet());
 
