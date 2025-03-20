@@ -9,7 +9,6 @@ public class Tache {
     private Date date_debut;
     private Date date_fin ;
 
-
     public Tache(int id_projet, int id_tache, String description, Date date_debut, Date date_fin) {
         this.id_projet = id_projet;
         this.id_tache = id_tache;
@@ -22,6 +21,27 @@ public class Tache {
         this.description = description;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
+    }
+
+    public Tache() {
+
+    }
+
+
+    public int getId_projet() {
+        return id_projet;
+    }
+
+    public void setId_projet(int id_projet) {
+        this.id_projet = id_projet;
+    }
+
+    public int getId_tache() {
+        return id_tache;
+    }
+
+    public void setId_tache(int id_tache) {
+        this.id_tache = id_tache;
     }
 
     public String getDescription() {
@@ -47,5 +67,7 @@ public class Tache {
     public void setDate_fin(Date date_fin) {
         this.date_fin = date_fin;
     }
+
+
 
 }
