@@ -26,7 +26,7 @@
     <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-10">
         <% if (taches != null && !taches.isEmpty()) {
             for (Tache tache : taches) {
-                if (tache.getId_projet() == id_projet) { // Afficher uniquement les tâches du projet sélectionné
+                if (tache.getId_projet() == id_projet) {
         %>
         <div class="group">
             <div class="relative flex flex-col items-center justify-center w-[350px] h-auto max-w-full border border-gray-100 bg-white rounded-lg shadow-lg transition-all duration-500 p-5 transform hover:scale-105 hover:shadow-xl">
