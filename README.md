@@ -52,7 +52,7 @@ L'application propose une **interface intuitive** pour **visualiser, mettre à j
 | 🗄️ **Base de données** | MySQL (JDBC API) |
 | 🔥 **Serveur**      | Apache Tomcat |
 | 🎨 **Front-end**    | HTML, CSS (Tailwind), JavaScript |
-| 🎨 **Maquettage**  | Figma / Adobe XD |
+| 🎨 **Maquettage**  | Figma |
 | 🔄 **Versioning**  | Git |
 
 ---
