@@ -26,24 +26,13 @@ public class TacheServlet extends HttpServlet {
 
         try {
             switch (action != null ? action : "") {
-                case "add":
-                    request.setAttribute("id_projet", id_projet);
-                    request.getRequestDispatcher("/ajouterTache.jsp").forward(request, response);
-                    break;
                 case "edit":
-                    if (id_tache > 0) {
-                        Tache tache = tacheDAO.GetTacheById(id_tache);
-                        request.setAttribute("tache", tache);
-                        request.setAttribute("id_projet", id_projet);
-                        request.getRequestDispatcher("/modifierTache.jsp").forward(request, response);
-                    } else {
-                        response.sendRedirect("Tache?id_projet=" + id_projet);
-                    }
+                    request.setAttribute("tache", tacheDAO.GetTacheById(id_tache));
+                    request.setAttribute("id_projet", id_projet);
+                    request.getRequestDispatcher("/modifierTache.jsp").forward(request, response);
                     break;
                 case "delete":
-                    if (id_tache > 0) {
-                        tacheDAO.DeleteTache(id_tache);
-                    }
+                    tacheDAO.DeleteTache(id_tache);
                     response.sendRedirect("Tache?id_projet=" + id_projet);
                     break;
                 default:
@@ -63,20 +52,15 @@ public class TacheServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int id_projet = Integer.parseInt(request.getParameter("id_projet"));
-            int id_tache = request.getParameter("id_tache") != null && !request.getParameter("id_tache").isEmpty()
-                    ? Integer.parseInt(request.getParameter("id_tache"))
-                    : -1;
-
             Tache tache = new Tache();
+            int id_projet = request.getParameter("id_projet") != null ? Integer.parseInt(request.getParameter("id_projet")) : -1;
             tache.setId_projet(id_projet);
             tache.setDescription(request.getParameter("description"));
             tache.setDate_debut(Date.valueOf(request.getParameter("date_debut")));
             tache.setDate_fin(Date.valueOf(request.getParameter("date_fin")));
 
-            if (id_tache > 0) {
-                tache.setId_tache(id_tache);
-
+            if (request.getParameter("id_tache") != null && !request.getParameter("id_tache").isEmpty()) {
+                tache.setId_tache(Integer.parseInt(request.getParameter("id_tache")));
                 tacheDAO.ModifierTache(tache);
             } else {
                 tacheDAO.AjouterTache(tache);
@@ -89,5 +73,4 @@ public class TacheServlet extends HttpServlet {
             response.sendError(500, "Error saving task.");
         }
     }
-
 }

@@ -3,6 +3,7 @@
 <%
     Projet projet = (Projet) request.getAttribute("projet");
 %>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

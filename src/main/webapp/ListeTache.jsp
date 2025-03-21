@@ -10,6 +10,7 @@
 <div class="container mx-auto bg-white/80 p-6 shadow-lg rounded-lg">
 
     <%
+        // Récupération de l'ID du projet et de la liste des tâches depuis la requête
         int id_projet = request.getParameter("id_projet") != null ? Integer.parseInt(request.getParameter("id_projet")) : -1;
         List<Tache> taches = (List<Tache>) request.getAttribute("taches");
     %>
@@ -24,9 +25,10 @@
 
     <!-- Liste des Tâches -->
     <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-10">
-        <% if (taches != null && !taches.isEmpty()) {
-            for (Tache tache : taches) {
-                if (tache.getId_projet() == id_projet) {
+        <%
+            if (taches != null && !taches.isEmpty()) {
+                for (Tache tache : taches) {
+                    if (tache.getId_projet() == id_projet) {
         %>
         <div class="group">
             <div class="relative flex flex-col items-center justify-center w-[350px] h-auto max-w-full border border-gray-100 bg-white rounded-lg shadow-lg transition-all duration-500 p-5 transform hover:scale-105 hover:shadow-xl">
@@ -35,10 +37,13 @@
                 <p class="text-sm text-gray-600 text-center"><strong>Date de fin :</strong> <%= tache.getDate_fin() %></p>
 
                 <div class="flex justify-center gap-4 mt-4">
+                    <!-- Bouton Modifier -->
                     <a href="Tache?action=edit&id_tache=<%= tache.getId_tache() %>&id_projet=<%= id_projet %>"
                        class="py-2 px-4 rounded-md text-white bg-blue-500 hover:bg-blue-600 transition-all duration-300">
                         Modifier
                     </a>
+
+                    <!-- Bouton Supprimer -->
                     <a href="Tache?action=delete&id_tache=<%= tache.getId_tache() %>&id_projet=<%= id_projet %>"
                        class="py-2 px-4 rounded-md text-white bg-red-500 hover:bg-red-600 transition-all duration-300"
                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?');">
@@ -51,6 +56,7 @@
                 }
             }
         } else { %>
+        <!-- Message si aucune tâche n'est disponible -->
         <p class="text-gray-700 text-center col-span-full">Aucune tâche disponible pour ce projet.</p>
         <% } %>
     </div>
