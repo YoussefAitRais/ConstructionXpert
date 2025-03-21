@@ -32,7 +32,9 @@ public class TacheServlet extends HttpServlet {
                     request.getRequestDispatcher("/modifierTache.jsp").forward(request, response);
                     break;
                 case "delete":
-                    tacheDAO.DeleteTache(id_tache);
+                    if (id_tache != -1) {
+                        tacheDAO.DeleteTache(id_tache);
+                    }
                     response.sendRedirect("Tache?id_projet=" + id_projet);
                     break;
                 default:
@@ -54,13 +56,19 @@ public class TacheServlet extends HttpServlet {
         try {
             Tache tache = new Tache();
             int id_projet = request.getParameter("id_projet") != null ? Integer.parseInt(request.getParameter("id_projet")) : -1;
+            int id_tache = request.getParameter("id_tache") != null ? Integer.parseInt(request.getParameter("id_tache")) : -1;
+
             tache.setId_projet(id_projet);
+            tache.setId_tache(id_tache);
             tache.setDescription(request.getParameter("description"));
             tache.setDate_debut(Date.valueOf(request.getParameter("date_debut")));
             tache.setDate_fin(Date.valueOf(request.getParameter("date_fin")));
 
             if (request.getParameter("id_tache") != null && !request.getParameter("id_tache").isEmpty()) {
                 tache.setId_tache(Integer.parseInt(request.getParameter("id_tache")));
+                request.setAttribute("tache", tacheDAO.GetTacheById(id_tache));
+                request.setAttribute("id_projet", id_projet);
+                request.getRequestDispatcher("modifierTache.jsp").forward(request, response);
                 tacheDAO.ModifierTache(tache);
             } else {
                 tacheDAO.AjouterTache(tache);

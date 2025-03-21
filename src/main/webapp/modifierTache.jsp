@@ -11,17 +11,16 @@
 <div class="bg-white/80 p-8 rounded-lg shadow-lg w-96">
 
   <%
-    // Récupération des données de la tâche à modifier
     Tache tache = (Tache) request.getAttribute("tache");
     int id_projet = request.getParameter("id_projet") != null ? Integer.parseInt(request.getParameter("id_projet")) : -1;
   %>
 
   <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Modifier la Tâche</h2>
 
-  <!-- Formulaire de modification -->
   <form action="Tache" method="post" class="space-y-4">
     <input type="hidden" name="id_tache" value="<%= tache.getId_tache() %>">
     <input type="hidden" name="id_projet" value="<%= id_projet %>">
+    <input type="hidden" name="action" value="edit">
 
     <div>
       <label class="block text-gray-700">Description</label>

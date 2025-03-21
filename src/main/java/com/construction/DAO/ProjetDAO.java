@@ -102,7 +102,9 @@ public class ProjetDAO {
 
             stmt.setInt(1, id_projet);
             stmt.executeUpdate();
+
         }
+
 
     }
 

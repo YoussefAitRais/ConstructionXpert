@@ -51,6 +51,8 @@ public class TacheDAO {
             if (rs.next()) {
                 tache = new Tache();
                 tache.setId_tache(rs.getInt("id_tache"));
+                tache.setId_tache(rs.getInt("projet"));
+
                 tache.setDescription(rs.getString("description"));
                 tache.setDate_debut(rs.getDate("date_debut"));
                 tache.setDate_fin(rs.getDate("date_fin"));
@@ -81,13 +83,13 @@ public class TacheDAO {
     }
 
     public Tache ModifierTache(Tache tache) throws SQLException {
-        String sql = "UPDATE tache SET description = ?, date_debut = ?, date_fin = ?, budget = ? WHERE id_projet = ?";
+        String sql = "UPDATE tache SET description = ?, date_debut = ?, date_fin = ? WHERE id_tache = ?";
         PreparedStatement stmt = DBConnection.getConnection().prepareStatement(sql);
 
         stmt.setString(1, tache.getDescription() != null ? tache.getDescription() : "");
         stmt.setDate(2, tache.getDate_debut() != null ? tache.getDate_debut() : new java.sql.Date(System.currentTimeMillis()));
         stmt.setDate(3, tache.getDate_fin() != null ? tache.getDate_fin() : new java.sql.Date(System.currentTimeMillis()));
-        stmt.setInt(4, tache.getId_projet());
+        stmt.setInt(4, tache.getId_tache());
 
         int rowsUpdated = stmt.executeUpdate();
         if (rowsUpdated == 0) {
