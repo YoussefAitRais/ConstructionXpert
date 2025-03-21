@@ -13,8 +13,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-
-@WebServlet ("/Tache")
+@WebServlet("/Tache")
 public class TacheServlet extends HttpServlet {
     private TacheDAO tacheDAO = new TacheDAO();
 
@@ -23,21 +22,26 @@ public class TacheServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         int id_tache = request.getParameter("id_tache") != null ? Integer.parseInt(request.getParameter("id_tache")) : -1;
+        int id_projet = request.getParameter("id_projet") != null ? Integer.parseInt(request.getParameter("id_projet")) : -1;
+
         try {
             switch (action != null ? action : "") {
+                case "add":
+                    request.setAttribute("id_projet", id_projet);
+                    request.getRequestDispatcher("/ajouterTache.jsp").forward(request, response);
+                    break;
                 case "edit":
-
                     request.setAttribute("tache", tacheDAO.GetTacheById(id_tache));
-
-                    request.getRequestDispatcher("/modifierProjet.jsp").forward(request, response);
+                    request.getRequestDispatcher("/modifierTache.jsp").forward(request, response);
                     break;
                 case "delete":
                     tacheDAO.DeleteTache(id_tache);
-                    response.sendRedirect("Tache");
+                    response.sendRedirect("Tache?id_projet=" + id_projet);
                     break;
                 default:
                     List<Tache> tacheList = tacheDAO.GetAllTache();
                     request.setAttribute("taches", tacheList);
+                    request.setAttribute("id_projet", id_projet);
                     request.getRequestDispatcher("/ListeTache.jsp").forward(request, response);
                     break;
             }
@@ -47,27 +51,30 @@ public class TacheServlet extends HttpServlet {
         }
     }
 
-        @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            try {
-                Tache tache = new Tache();
-                tache.setDescription(request.getParameter("description"));
-                tache.setDate_debut(Date.valueOf(request.getParameter("date_debut")));
-                tache.setDate_fin(Date.valueOf(request.getParameter("date_fin")));
+        try {
+            int id_projet = Integer.parseInt(request.getParameter("id_projet")); // Correction ici
+            Tache tache = new Tache();
 
-                if (request.getParameter("id_tache") != null && !request.getParameter("id_tache").isEmpty()) {
-                    tache.setId_projet(Integer.parseInt(request.getParameter("id_tache")));
-                    tacheDAO.ModifierTache(tache);
-                } else {
-                    tacheDAO.AjouterTache(tache);
-                }
+            tache.setId_projet(id_projet);
+            tache.setDescription(request.getParameter("description"));
+            tache.setDate_debut(Date.valueOf(request.getParameter("date_debut")));
+            tache.setDate_fin(Date.valueOf(request.getParameter("date_fin")));
 
-                response.sendRedirect("Projet");
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-                response.sendError(500, "Error saving project.");
+            if (request.getParameter("id_tache") != null && !request.getParameter("id_tache").isEmpty()) {
+                tache.setId_tache(Integer.parseInt(request.getParameter("id_tache")));
+                tacheDAO.ModifierTache(tache);
+            } else {
+                tacheDAO.AjouterTache(tache);
             }
+
+            response.sendRedirect("Tache?id_projet=" + id_projet);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(500, "Error saving task.");
         }
     }
+}

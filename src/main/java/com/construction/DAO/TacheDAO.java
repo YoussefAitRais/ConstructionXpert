@@ -15,24 +15,30 @@ public class TacheDAO {
     Tache tache = new Tache();
 
     public void AjouterTache(Tache tache) throws SQLException {
-
-        String query  = "insert into tache ( id_projet , id_tache , description , date_debut , date_fin) values (?,?,?,?,?)";
+        String checkQuery = "SELECT COUNT(*) FROM projet WHERE id_projet = ?";
+        String insertQuery = "INSERT INTO tache (id_projet, description, date_debut, date_fin) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection()) {
-            PreparedStatement stmt = connection.prepareStatement((query));
+            PreparedStatement checkStmt = connection.prepareStatement(checkQuery);
+            checkStmt.setInt(1, tache.getId_projet());
+            ResultSet rs = checkStmt.executeQuery();
 
-            stmt.setInt(1, tache.getId_projet());
-            stmt.setInt(2, tache.getId_tache());
-            stmt.setString(3, tache.getDescription());
-            stmt.setDate(4, tache.getDate_debut());
-            stmt.setDate(5, tache.getDate_fin());
+            if (rs.next() && rs.getInt(1) > 0) {
+                PreparedStatement stmt = connection.prepareStatement(insertQuery);
+                stmt.setInt(1, tache.getId_projet());
+                stmt.setString(2, tache.getDescription());
+                stmt.setDate(3, tache.getDate_debut());
+                stmt.setDate(4, tache.getDate_fin());
 
-            stmt.executeUpdate();
+                stmt.executeUpdate();
+            } else {
+                System.out.println("Error: Project ID " + tache.getId_projet() + " does not exist.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
 
     public Tache GetTacheById(int id_tache) throws SQLException {
         String query = "select * from tache where id_tache = ?";
@@ -65,8 +71,6 @@ public class TacheDAO {
             while (rs.next()) {
                 Tache tache = new Tache();
                 tache.setId_projet(rs.getInt("id_projet"));
-                tache.setId_tache(rs.getInt("id_tache"));
-
                 tache.setDescription(rs.getString("description"));
                 tache.setDate_debut(rs.getDate("date_debut"));
                 tache.setDate_fin(rs.getDate("date_fin"));
