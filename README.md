@@ -49,10 +49,10 @@ L'application propose une **interface intuitive** pour **visualiser, mettre à j
 | 🌐 **Technologie**   | ⚙️ **Outils & Langages** |
 |--------------------|----------------------|
 | 🎯 **Back-end**    | Java (Java EE - Servlets, JSP) |
-| 🗄️ **Base de données** | MySQL / PostgreSQL (JDBC API) |
+| 🗄️ **Base de données** | MySQL (JDBC API) |
 | 🔥 **Serveur**      | Apache Tomcat |
-| 🎨 **Front-end**    | HTML, CSS (Bootstrap/Tailwind), JavaScript |
-| 🎨 **Maquettage**  | Figma / Adobe XD |
+| 🎨 **Front-end**    | HTML, CSS (Tailwind), JavaScript |
+| 🎨 **Maquettage**  | Figma |
 | 🔄 **Versioning**  | Git |
 
 ---
