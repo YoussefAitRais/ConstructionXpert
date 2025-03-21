@@ -68,6 +68,4 @@ public class Tache {
         this.date_fin = date_fin;
     }
 
-
-
 }
