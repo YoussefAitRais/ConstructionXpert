@@ -39,7 +39,7 @@
                 <div>
                     <label class="block text-yellow-400 font-medium text-xs">Description</label>
                     <textarea name="description" required
-                              class="w-full px-2 py-1 border border-yellow-400 rounded-lg bg-gray-900 text-white focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-all duration-300 h-16 sm:h-20 text-xs"><%= projet.getDescription() %></textarea>
+                              class="w-full px-2 py-1 border border-yellow-400 rounded-lg bg-gray-900 text-white focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-all duration-300 h-16 sm:h-20 text-xs"></textarea>
                 </div>
                 <div>
                     <label class="block text-yellow-400 font-medium text-xs">Date de début</label>

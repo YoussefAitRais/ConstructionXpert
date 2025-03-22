@@ -30,9 +30,9 @@
             <form action="Tache" method="POST" class="space-y-2">
                 <input type="hidden" name="id_projet" value="<%= id_projet %>">
                 <div>
-                    <label for="description" class="block text-yellow-400 font-medium text-xs">Description</label>
-                    <input type="text" id="description" name="description" required
-                           class="w-full px-2 py-1 border border-yellow-400 rounded-lg bg-gray-900 text-white focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-all duration-300 text-xs">
+                    <label class="block text-yellow-400 font-medium text-xs">Description</label>
+                    <textarea name="description" required
+                              class="w-full px-2 py-1 border border-yellow-400 rounded-lg bg-gray-900 text-white focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-all duration-300 h-16 sm:h-20 text-xs"></textarea>
                 </div>
                 <div>
                     <label for="date_debut" class="block text-yellow-400 font-medium text-xs">Date de début</label>
