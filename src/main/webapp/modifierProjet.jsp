@@ -29,6 +29,7 @@
         <div class="w-full max-w-xs border border-yellow-400 rounded-xl p-4 sm:p-5 bg-black bg-opacity-90">
             <h2 class="text-base sm:text-lg md:text-xl font-bold text-center text-yellow-400 mb-3 md:mb-4">Modifier Projet</h2>
             <form action="Projet" method="POST" class="space-y-2">
+
                 <input type="hidden" name="id_projet" value="<%= projet.getId_projet() %>">
                 <div>
                     <label class="block text-yellow-400 font-medium text-xs">Nom du projet</label>

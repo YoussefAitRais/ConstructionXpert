@@ -54,7 +54,7 @@
 
                 <!-- Boutons d'Actions -->
                 <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mt-4">
-                    <a href="Tache?id_projet=<%= projet.getId_projet() %>"
+                    <a href="Tache?&id_projet=<%= projet.getId_projet() %>"
                        class="py-2 px-3 sm:px-4 rounded-md text-black bg-yellow-400 hover:bg-yellow-500 transition-all duration-300 text-xs sm:text-sm font-semibold">
                         Tâches
                     </a>

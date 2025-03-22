@@ -12,34 +12,39 @@
 
   <%
     Tache tache = (Tache) request.getAttribute("tache");
-    int id_projet = request.getParameter("id_projet") != null ? Integer.parseInt(request.getParameter("id_projet")) : -1;
+    Integer id_projet = (Integer) request.getAttribute("id_projet"); // Retrieve from attribute
+
+    // Handle null case
+    int id_tache = (tache != null) ? tache.getId_tache() : -1;
+    String description = (tache != null) ? tache.getDescription() : "";
+    String dateDebut = (tache != null && tache.getDate_debut() != null) ? tache.getDate_debut().toString() : "";
+    String dateFin = (tache != null && tache.getDate_fin() != null) ? tache.getDate_fin().toString() : "";
   %>
 
   <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Modifier la Tâche</h2>
 
   <form action="Tache" method="post" class="space-y-4">
-    <input type="hidden" name="id_tache" value="<%= tache.getId_tache() %>">
-    <input type="hidden" name="id_projet" value="<%= id_projet %>">
-    <input type="hidden" name="action" value="edit">
+    <input type="hidden" name="id_tache" value="<%= id_tache %>">
+    <input type="hidden" name="id_projet" value="<%= id_projet != null ? id_projet : "" %>"> <!-- Avoid null issue -->
 
     <div>
       <label class="block text-gray-700">Description</label>
       <input type="text" name="description" required
-             value="<%= tache.getDescription() %>"
+             value="<%= description %>"
              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
     </div>
 
     <div>
       <label class="block text-gray-700">Date de début</label>
       <input type="date" name="date_debut" required
-             value="<%= tache.getDate_debut() %>"
+             value="<%= dateDebut %>"
              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
     </div>
 
     <div>
       <label class="block text-gray-700">Date de fin</label>
       <input type="date" name="date_fin" required
-             value="<%= tache.getDate_fin() %>"
+             value="<%= dateFin %>"
              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
     </div>
 
@@ -51,7 +56,7 @@
 
   <!-- Lien de retour -->
   <div class="text-center mt-4">
-    <a href="Tache?id_projet=<%= id_projet %>"
+    <a href="Tache?id_projet=<%= id_projet != null ? id_projet : "" %>"
        class="text-gray-600 hover:text-gray-800 transition duration-300">
       Annuler et retourner à la liste
     </a>

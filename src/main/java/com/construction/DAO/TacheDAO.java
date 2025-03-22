@@ -42,6 +42,7 @@ public class TacheDAO {
 
     public Tache GetTacheById(int id_tache) throws SQLException {
         String query = "select * from tache where id_tache = ?";
+        Tache tache = null;
         try (Connection connection = DBConnection.getConnection()) {
 
             PreparedStatement stmt = connection.prepareStatement(query);
@@ -51,8 +52,7 @@ public class TacheDAO {
             if (rs.next()) {
                 tache = new Tache();
                 tache.setId_tache(rs.getInt("id_tache"));
-                tache.setId_tache(rs.getInt("projet"));
-
+                tache.setId_projet(rs.getInt("id_projet"));
                 tache.setDescription(rs.getString("description"));
                 tache.setDate_debut(rs.getDate("date_debut"));
                 tache.setDate_fin(rs.getDate("date_fin"));
@@ -72,6 +72,7 @@ public class TacheDAO {
 
             while (rs.next()) {
                 Tache tache = new Tache();
+                tache.setId_tache(rs.getInt("id_tache"));
                 tache.setId_projet(rs.getInt("id_projet"));
                 tache.setDescription(rs.getString("description"));
                 tache.setDate_debut(rs.getDate("date_debut"));

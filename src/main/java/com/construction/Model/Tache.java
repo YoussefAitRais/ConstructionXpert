@@ -17,11 +17,6 @@ public class Tache {
         this.date_fin = date_fin;
     }
 
-    public Tache(String description, Date date_debut, Date date_fin) {
-        this.description = description;
-        this.date_debut = date_debut;
-        this.date_fin = date_fin;
-    }
 
     public Tache() {
 

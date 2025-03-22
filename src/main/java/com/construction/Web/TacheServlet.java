@@ -21,16 +21,24 @@ public class TacheServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        int id_tache = request.getParameter("id_tache") != null ? Integer.parseInt(request.getParameter("id_tache")) : -1;
         int id_projet = request.getParameter("id_projet") != null ? Integer.parseInt(request.getParameter("id_projet")) : -1;
-
+        int id_tache = request.getParameter("id_tache") != null && !request.getParameter("id_tache").isEmpty()
+                ? Integer.parseInt(request.getParameter("id_tache"))
+                : -1;
         try {
             switch (action != null ? action : "") {
                 case "edit":
-                    request.setAttribute("tache", tacheDAO.GetTacheById(id_tache));
-                    request.setAttribute("id_projet", id_projet);
+                    Tache tache = tacheDAO.GetTacheById(id_tache);
+                    if (tache == null) {
+                        response.sendError(404, "Task not found");
+                        return;
+                    }
+                    request.setAttribute("tache", tache);
+                    request.setAttribute("id_projet", tache.getId_projet()); // ✅ Set correct project ID
                     request.getRequestDispatcher("/modifierTache.jsp").forward(request, response);
+
                     break;
+
                 case "delete":
                     if (id_tache != -1) {
                         tacheDAO.DeleteTache(id_tache);
@@ -54,25 +62,30 @@ public class TacheServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Tache tache = new Tache();
             int id_projet = request.getParameter("id_projet") != null ? Integer.parseInt(request.getParameter("id_projet")) : -1;
-            int id_tache = request.getParameter("id_tache") != null ? Integer.parseInt(request.getParameter("id_tache")) : -1;
+            int id_tache = request.getParameter("id_tache") != null && !request.getParameter("id_tache").isEmpty()
+                    ? Integer.parseInt(request.getParameter("id_tache"))
+                    : -1;
 
+            Tache tache = new Tache();
             tache.setId_projet(id_projet);
-            tache.setId_tache(id_tache);
             tache.setDescription(request.getParameter("description"));
             tache.setDate_debut(Date.valueOf(request.getParameter("date_debut")));
             tache.setDate_fin(Date.valueOf(request.getParameter("date_fin")));
 
-            if (request.getParameter("id_tache") != null && !request.getParameter("id_tache").isEmpty()) {
-                tache.setId_tache(Integer.parseInt(request.getParameter("id_tache")));
-                request.setAttribute("tache", tacheDAO.GetTacheById(id_tache));
-                request.setAttribute("id_projet", id_projet);
-                request.getRequestDispatcher("modifierTache.jsp").forward(request, response);
-                tacheDAO.ModifierTache(tache);
+            if (id_tache > 0) { // ✅ Ensures only valid IDs update
+                Tache existingTache = tacheDAO.GetTacheById(id_tache);
+                if (existingTache != null) {
+                    tache.setId_tache(id_tache);
+                    tacheDAO.ModifierTache(tache);
+                } else {
+                    response.sendError(404, "Task not found");
+                    return;
+                }
             } else {
                 tacheDAO.AjouterTache(tache);
             }
+
 
             response.sendRedirect("Tache?id_projet=" + id_projet);
 
