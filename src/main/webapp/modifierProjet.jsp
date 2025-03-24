@@ -12,14 +12,12 @@
     <title>Modifier Projet</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom Fade-In Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
 
-        /* Style for validation messages */
         .error-message {
             color: yellow;
             font-size: 12px;
@@ -29,7 +27,7 @@
     </style>
     <script>
         function validateForm(event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault();
 
             let isValid = true;
             let fields = ["nom", "description", "date_debut", "date_fin", "budget"];
@@ -42,12 +40,12 @@
                     errorSpan.textContent = "Ce champ est requis";
                     isValid = false;
                 } else {
-                    errorSpan.textContent = ""; // Clear error if valid
+                    errorSpan.textContent = "";
                 }
             });
 
             if (isValid) {
-                document.getElementById("projetForm").submit(); // Submit if valid
+                document.getElementById("projetForm").submit();
             }
         }
     </script>
@@ -56,7 +54,6 @@
 
 <div class="container mx-auto flex flex-col lg:flex-row items-stretch justify-center gap-0 w-full h-screen overflow-hidden">
 
-    <!-- Left Section (Form) -->
     <div class="bg-black bg-opacity-80 w-full lg:w-1/2 p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center animate-fadeIn">
         <div class="w-full max-w-xs border border-yellow-400 rounded-xl p-4 sm:p-5 bg-black bg-opacity-90">
             <h2 class="text-base sm:text-lg md:text-xl font-bold text-center text-yellow-400 mb-3 md:mb-4">Modifier Projet</h2>
@@ -106,7 +103,6 @@
         </div>
     </div>
 
-    <!-- Right Section (Image) -->
     <div class="hidden lg:block w-full lg:w-1/2 animate-fadeIn" style="animation-delay: 0.2s;">
         <img src="./image/borishamer.jpg" alt="Construction Site" class="w-full h-full object-cover">
     </div>
