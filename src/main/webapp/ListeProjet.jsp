@@ -27,6 +27,11 @@
            class="bg-yellow-400 text-black px-3 sm:px-4 py-1 sm:py-2 rounded-lg block w-max mx-auto text-xs sm:text-sm font-semibold hover:bg-yellow-500 hover:scale-105 transition-all duration-300 mb-6 animate-fadeIn">
             Ajouter un Projet
         </a>
+        <a href="index.jsp"
+           class="bg-yellow-400 text-black px-3 sm:px-4 py-1 sm:py-2 rounded-lg block w-max mx-auto text-xs sm:text-sm font-semibold hover:bg-yellow-500 hover:scale-105 transition-all duration-300 mb-6 animate-fadeIn">
+            Page D'accueil
+        </a>
+
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <%
