@@ -89,3 +89,10 @@ L'application propose une **interface intuitive** pour **visualiser, mettre à j
 ---
 
 💡 **ConstructionXpert Services Solution** est une plateforme intuitive et efficace pour optimiser la gestion des projets de construction ! 🚀🏗️  
+
+
+
+
+![Use case uml diagram](./Uml/ConstructionUseCaseDiagram1.jpg)
+![Class uml diagram](./Uml/ConstructionClassDiagram1.jpg)
+![Sequende uml diagram](./Uml/ConstructionSequenceDiagram1.jpg)

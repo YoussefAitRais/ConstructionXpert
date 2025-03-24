@@ -44,7 +44,7 @@
 </header>
 
 <!-- Hero Section -->
-<section id="home" class="bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+<section id="home" class="bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('./image/banner.jpg');">
     <div class="bg-black bg-opacity-70 h-full w-full flex items-center justify-center text-center animate-fadeIn">
         <div>
             <h2 class="text-4xl md:text-6xl font-bold mb-4 text-yellow-400">Building Your Future</h2>
