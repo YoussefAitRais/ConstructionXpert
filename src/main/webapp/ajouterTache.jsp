@@ -54,7 +54,6 @@
                     </button>
                 </div>
             </form>
-            <!-- Lien de retour -->
             <div class="text-center mt-3">
                 <a href="Tache?id_projet=<%= id_projet %>"
                    class="text-yellow-400 hover:text-yellow-500 transition duration-300 text-xs">

@@ -21,7 +21,6 @@
 
 <div class="container mx-auto flex flex-col lg:flex-row items-stretch justify-center gap-0 w-full h-screen overflow-hidden">
 
-  <!-- Left Section (Form) -->
   <div class="bg-black bg-opacity-80 w-full lg:w-1/2 p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center animate-fadeIn">
     <div class="w-full max-w-xs border border-yellow-400 rounded-xl p-4 sm:p-5 bg-black bg-opacity-90">
       <%
@@ -68,7 +67,6 @@
           </button>
         </div>
       </form>
-      <!-- Lien de retour -->
       <div class="text-center mt-3">
         <a href="Tache?id_projet=<%= id_projet != null ? id_projet : "" %>"
            class="text-yellow-400 hover:text-yellow-500 transition duration-300 text-xs">
@@ -78,9 +76,8 @@
     </div>
   </div>
 
-  <!-- Right Section (Image) -->
   <div class="hidden lg:block w-full lg:w-1/2 animate-fadeIn" style="animation-delay: 0.2s;">
-    <img src="https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    <img src="./image/Small-Construction.jpg"
          alt="Construction Site" class="w-full h-full object-cover">
   </div>
 

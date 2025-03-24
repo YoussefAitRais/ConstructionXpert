@@ -45,7 +45,7 @@
             <div class="relative flex flex-col items-center w-full max-w-[350px] mx-auto border border-yellow-400 bg-black bg-opacity-90 rounded-lg shadow-lg transition-all duration-500 p-4 sm:p-5 hover:shadow-xl hover:-translate-y-2">
 
                 <!-- Image Illustration -->
-                <img src="./image/tache.jpg" class="w-full h-48 sm:h-56 rounded-lg object-cover mb-4" alt="Tâche Image">
+                <img src="./image/pexels.jpg" class="w-full h-48 sm:h-56 rounded-lg object-cover mb-4" alt="Tâche Image">
 
                 <!-- Détails de la Tâche -->
                 <h2 class="text-xl sm:text-2xl font-extrabold text-yellow-400 text-center"><%= tache.getDescription() %></h2>
